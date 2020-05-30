@@ -49,9 +49,13 @@ class App extends React.Component {
   getData() {
     const that = this;
     const stay = that.state.fees.days;
-    axios.get('/data')
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const myParam = urlParams.get('id');
+    axios.get(`properties?id=${3060611}`)
       .then(({ data }) => {
-        const res = data[4];
+        console.log(`here is the data => ${data}`)
+        const res = data[0];
+        console.log('here is res =>  ', res)
         const total = res.cleaning_fee + res.service_fee + res.tax + (res.price * stay);
         this.setState({
           price: {
